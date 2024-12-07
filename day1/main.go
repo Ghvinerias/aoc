@@ -2021,6 +2021,7 @@ func main() {
 				d = d + 1
 			}
 			c = c + value_a*d
+			d = 0
 		}
 	}
 
