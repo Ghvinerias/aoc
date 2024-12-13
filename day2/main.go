@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -40,17 +41,18 @@ func main() {
 	}
 myLoop:
 	for _, row := range numbers {
-		for j, val := range row {
-			if j+1 < len(row) {
-				diff = float64(val - row[j+1])
-				if math.Abs(diff) >= 1 && math.Abs(diff) <= 3 {
-				} else {
-					continue myLoop
+		if sort.IntsAreSorted(row) {
+			for j, val := range row {
+				if j+1 < len(row) {
+					diff = float64(val - row[j+1])
+					if math.Abs(diff) >= 1 && math.Abs(diff) <= 3 {
+					} else {
+						continue myLoop
+					}
 				}
 			}
+			safeReports = safeReports + 1
 		}
-		safeReports = safeReports + 1
-
 	}
 	fmt.Println("Result:", safeReports)
 }
